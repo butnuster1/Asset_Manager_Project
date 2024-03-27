@@ -20,7 +20,12 @@ Including another URLconf
 #from django.contrib import admin
 #from django.urls import path
 
+from django.urls import include, re_path
+import Asset_Manager_App.views
+
 urlpatterns = [
     # Uncomment the next line to enable the admin:
     #path('admin/', admin.site.urls)
+    re_path(r'^$', Asset_Manager_App.views.index, name='index'),
+    re_path(r'^home$', Asset_Manager_App.views.index, name='home')
 ]
