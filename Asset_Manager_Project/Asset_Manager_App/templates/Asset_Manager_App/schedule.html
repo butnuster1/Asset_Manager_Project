@@ -1,0 +1,28 @@
+<!--
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+-->
+{% extends "Asset_Manager_App/layout.html" %}
+
+<html>
+    <head>
+        <title>{{ title }}</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'site.css' %}" />
+    </head>
+    <body>
+        <div><a href="home">Home</a></div>
+        {% block content %}
+        {{ content }}
+        {% endblock %}
+    </body>
+</html>

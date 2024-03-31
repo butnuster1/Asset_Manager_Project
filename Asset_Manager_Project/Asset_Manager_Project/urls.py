@@ -17,15 +17,19 @@ Including another URLconf
 """
 
 # Uncomment next two lines to enable admin:
-#from django.contrib import admin
-#from django.urls import path
+from django.contrib import admin
+from django.urls import path
+from Asset_Manager_App.views import AssetAdd
 
 from django.urls import include, re_path
 import Asset_Manager_App.views
 
+
 urlpatterns = [
-    # Uncomment the next line to enable the admin:
-    #path('admin/', admin.site.urls)
+    #Uncomment the next line to enable the admin:
+    path('AssetAdd_form', AssetAdd.as_view(), name='AssetAdd_form'),
+    path('admin/', admin.site.urls),
     re_path(r'^$', Asset_Manager_App.views.index, name='index'),
-    re_path(r'^home$', Asset_Manager_App.views.index, name='home')
+    re_path(r'^home$', Asset_Manager_App.views.index, name='home'),
+    re_path(r'^schedule$', Asset_Manager_App.views.schedule, name='schedule'),
 ]

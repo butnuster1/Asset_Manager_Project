@@ -1,3 +1,5 @@
+{% extends "Asset_Manager_App/layout.html" %}
+
 <html>
     <head>
         <title>{{ title }}</title>
@@ -5,6 +7,27 @@
         <link rel="stylesheet" type="text/css" href="{% static 'site.css' %}" />
     </head>
     <body>
+        <div><a href="schedule">Schedule</a></div>
+        <br />
         <span class="message">{{ message }}</span>{{ content }}
+
+        {% block content %}
+        <span>Your Assets:</span>
+        {% if content %}
+        <table>
+            <tr>
+                <th>Asset</th>
+            </tr>
+            {% for asset in assetList %}
+            <tr>
+                <td>{{asset.assetName}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <span>No assets in stock!</span>
+        {% endif %}
+        {% endblock content %}
     </body>
+
 </html>

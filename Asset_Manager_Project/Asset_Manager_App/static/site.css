@@ -4,5 +4,41 @@ body
 
 .message {
     font-weight: 600;
-    color: blue;
+    color: lightslategray;
+}
+
+.navbar {
+    background-color: lightslategray;
+    font-size: 1em;
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 32px;
+    color: white;
+    padding: 8px 5px 8px 5px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar-brand {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.navbar-item {
+    
+    margin-left: 30px;
+}
+
+.body-content {
+    padding: 5px;
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 24px;
 }

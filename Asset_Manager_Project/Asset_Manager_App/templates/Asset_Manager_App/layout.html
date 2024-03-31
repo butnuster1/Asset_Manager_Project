@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{{ title }}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'site.css' %}" />
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="/" class="navbar-brand">Asset Manager </a>
+        <a href="{% url 'home' %}" class="navbar-item">Home</a>
+        <a href="{% url 'schedule' %}" class="navbar-item">Schedule</a>
+    </div>
+
+    <div class="body-content">
+        {% block content %}
+        <span class="message">{{ message }}</span>
+        <br />
+        {{ content }}
+        {% endblock %}
+        <hr />
+        <footer>
+            <p>&copy; Dickson College</p>
+        </footer>
+    </div>
+</body>
+</html>
