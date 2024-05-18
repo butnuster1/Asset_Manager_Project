@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Asset_Manager_App\static\site.css" />
-    <Content Include="Asset_Manager_App\templates\Asset_Manager_App\AssetAdd_form.html" />
+    <Content Include="Asset_Manager_App\templates\Asset_Manager_App\assets_detail.html" />
+    <Content Include="Asset_Manager_App\templates\Asset_Manager_App\assets_form.html" />
+    <Content Include="Asset_Manager_App\templates\Asset_Manager_App\assets_list.html" />
     <Content Include="Asset_Manager_App\templates\Asset_Manager_App\index.html" />
     <Content Include="Asset_Manager_App\templates\Asset_Manager_App\layout.html" />
     <Content Include="Asset_Manager_App\templates\Asset_Manager_App\schedule.html" />

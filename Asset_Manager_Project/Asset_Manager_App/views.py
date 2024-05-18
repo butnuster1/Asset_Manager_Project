@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from .models import Assets
 
@@ -31,9 +33,20 @@ def schedule(request):
         }
     )
 
+class AssetList(ListView):
+    model = Assets
+    context_object_name = 'assets'
+    
+class AssetDetail(DetailView):
+    model = Assets
+    context_object_name = 'asset'
+
 class AssetAdd(CreateView):
     model = Assets
     fields = '__all__'
-    success_url = reverse_lazy('schedule')
+    success_url = reverse_lazy('assets_detail')
     
+    
+
+
     
