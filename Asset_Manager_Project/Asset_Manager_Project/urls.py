@@ -19,7 +19,7 @@ Including another URLconf
 # Uncomment next two lines to enable admin:
 from django.contrib import admin
 from django.urls import path
-from Asset_Manager_App.views import AssetList, AssetDetail, AssetAdd
+from Asset_Manager_App.views import AssetList, AssetDetail, AssetAdd, AssetUpdate, DeleteView
 from django.urls import include, re_path
 import Asset_Manager_App.views
 
@@ -30,6 +30,8 @@ urlpatterns = [
     # path('', AssetList.as_view(), name='assets'),
     path('asset/<int:pk>/', AssetDetail.as_view(), name='asset'),
     path('asset-create/', AssetAdd.as_view(), name='asset-create'),
+    path('asset-update/<int:pk>/', AssetUpdate.as_view(), name='asset-update'),
+    path('asset-delete/<int:pk>/', DeleteView.as_view(), name='asset-delete'),
     path('admin/', admin.site.urls),
     re_path(r'^$', Asset_Manager_App.views.index, name='index'),
     re_path(r'^home$', Asset_Manager_App.views.index, name='home'),

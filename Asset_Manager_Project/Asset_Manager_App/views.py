@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
@@ -44,9 +44,14 @@ class AssetDetail(DetailView):
 class AssetAdd(CreateView):
     model = Assets
     fields = '__all__'
-    success_url = reverse_lazy('assets_detail')
+    success_url = reverse_lazy('index')
     
+class AssetUpdate(UpdateView):
+    model = Assets
+    fields = '__all__'
+    success_url = reverse_lazy('index')
     
-
-
-    
+class DeleteView(DeleteView):
+    model = Assets
+    context_object_name = 'asset'
+    success_url = reverse_lazy('index')

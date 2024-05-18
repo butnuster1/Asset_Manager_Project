@@ -1,0 +1,6 @@
+<a href="{% url 'index' %}">Back to Home</a>
+<form method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete this asset? "{{asset}}"</p>
+    <input type="submit" value="Delete"/>
+</form>

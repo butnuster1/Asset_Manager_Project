@@ -20,11 +20,14 @@
             <tr>
                 <th>Asset</th>
                 <th></th>
+                <th></th>
             </tr>
             {% for asset in assetList %}
             <tr>
                 <td>{{asset.assetName}}</td>
                 <td><a href="{% url 'asset' asset.id %}">View</a></td>
+                <td><a href="{% url 'asset-update' asset.id %}">Edit</a></td>
+                <td><a href="{% url 'asset-delete' asset.id %}">Delete</a></td>
             </tr>
             {% endfor %}
         </table>
