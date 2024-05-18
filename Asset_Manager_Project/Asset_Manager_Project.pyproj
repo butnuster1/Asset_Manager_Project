@@ -51,6 +51,7 @@
     <Content Include="Asset_Manager_App\templates\Asset_Manager_App\assets_list.html" />
     <Content Include="Asset_Manager_App\templates\Asset_Manager_App\index.html" />
     <Content Include="Asset_Manager_App\templates\Asset_Manager_App\layout.html" />
+    <Content Include="Asset_Manager_App\templates\Asset_Manager_App\login.html" />
     <Content Include="Asset_Manager_App\templates\Asset_Manager_App\schedule.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>

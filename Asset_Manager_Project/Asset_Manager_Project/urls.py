@@ -19,7 +19,8 @@ Including another URLconf
 # Uncomment next two lines to enable admin:
 from django.contrib import admin
 from django.urls import path
-from Asset_Manager_App.views import AssetList, AssetDetail, AssetAdd, AssetUpdate, DeleteView
+from Asset_Manager_App.views import AssetList, AssetDetail, AssetAdd, AssetUpdate, DeleteView, CustomLoginView
+from django.contrib.auth.views import LogoutView
 from django.urls import include, re_path
 import Asset_Manager_App.views
 
@@ -28,6 +29,9 @@ urlpatterns = [
     #Uncomment the next line to enable the admin:
     
     # path('', AssetList.as_view(), name='assets'),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    
     path('asset/<int:pk>/', AssetDetail.as_view(), name='asset'),
     path('asset-create/', AssetAdd.as_view(), name='asset-create'),
     path('asset-update/<int:pk>/', AssetUpdate.as_view(), name='asset-update'),
