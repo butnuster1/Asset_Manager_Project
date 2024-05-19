@@ -7,12 +7,15 @@ from django.urls import reverse_lazy
 
 from django.contrib.auth.views import LoginView
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
 from .models import Assets
 
-
+@login_required(login_url="/login/") #users are unable to view the page until they are logged in https://docs.djangoproject.com/en/dev/topics/auth/default/#auth-web-requests
 def index(request):
     asset = Assets.objects.all()
-
+    
     return render(
         request,
         "Asset_Manager_App/index.html",  # Relative path from the 'templates' folder to the template file
