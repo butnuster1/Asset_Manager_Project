@@ -17,8 +17,21 @@ from .models import Assets
 @login_required(login_url="/login/") #users are unable to view the page until they are logged in https://docs.djangoproject.com/en/dev/topics/auth/default/#auth-web-requests
 def index(request):
     user = request.user
+    
+    search_input = request.GET.get('search-area') or ''
     assets = Assets.objects.filter(user=user)
+    if search_input:
+        assets = assets.filter(assetName__icontains=search_input)
+    #    assets = assets.filter(assetName__startswith=search_input) this line can be changed to have the search sort differently
+        
     stock_count = Assets.objects.filter(assetInStock=False).count()  # Count assets where complex is False
+    
+#    search_input = self.request.GET.get('search-area') or ''
+ #   if search_input:
+#        context['assets'] = context['assets'].filter(title__icontains=search_input)
+        
+ #   context['search_input'] = search_input
+        
     # temp = Assets.objects.all()
     
     context = {
@@ -27,7 +40,8 @@ def index(request):
         'content': "table",
         'assetList': assets,  # Use filtered assets instead of all assets
         'assets': assets,
-        'count': stock_count
+        'count': stock_count,
+        'search_input': search_input  # Add search input to context
     }
     
     return render(request, "Asset_Manager_App/index.html", context)

@@ -15,7 +15,7 @@
 
 
         {% if request.user.is_authenticated %}
-        <p>{{request.user}}</p>
+        <p><b>Welcome, </b>{{request.user}}</p>
         <a href="{% url 'logout' %}">Logout</a>
         {% else %}
         <a href="{% url 'login' %}">Login</a>
@@ -27,9 +27,14 @@
         {% if content %}
         <a href="{% url 'asset-create' %}">Add Asset</a>
 
+        <form method="GET">
+            <input type='text' name="search-area" value="{{search_input}}" />
+            <input type="submit" value='search' />
+        </form>
+
         <table>
             <tr>
-                <th>Asset</th>
+                <th>Assets</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -41,10 +46,10 @@
                 <td><a href="{% url 'asset-delete' asset.id %}">Delete</a></td>
             </tr>
             {% empty %}
-            <h3>No assets in stock!</h3>
+            <p><h3>No assets in stock!</h3></p>
             {% endfor %}
         </table>
-        {% else %}
+        
         {% endif %}
         {% endblock content %}
     </body>
