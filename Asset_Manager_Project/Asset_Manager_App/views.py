@@ -14,8 +14,22 @@ from .models import Assets
 
 @login_required(login_url="/login/") #users are unable to view the page until they are logged in https://docs.djangoproject.com/en/dev/topics/auth/default/#auth-web-requests
 def index(request):
-    asset = Assets.objects.all()
+    user = request.user
+    assets = Assets.objects.filter(user=user)
+    stock_count = Assets.objects.filter(assetInStock=False).count()  # Count assets where complex is False
+    # temp = Assets.objects.all()
     
+    context = {
+        'title': "Dickson College Asset Manager!",
+        'message': "Welcome to the Dickson College Asset Manager",
+        'content': "table",
+        'assetList': assets,  # Use filtered assets instead of all assets
+        'assets': assets,
+        'count': stock_count
+    }
+    
+    return render(request, "Asset_Manager_App/index.html", context)
+    """
     return render(
         request,
         "Asset_Manager_App/index.html",  # Relative path from the 'templates' folder to the template file
@@ -25,9 +39,10 @@ def index(request):
             'title' : "Dickson College Asset Manager! ",
             'message' : "Welcome to the Dickson College Asset Manager",
             'content' : "table",
-            'assetList': asset
+            'assetList': temp
         }
     )
+"""
 
 def schedule(request):
     return render(
@@ -38,6 +53,14 @@ def schedule(request):
             'content' : "Add events to your schedule."
         }
     )
+
+
+# class based view method for restricting data to specific users
+#def get_context_data(self, **kwargs):
+ #   context = super().get_context_data(**kwargs)
+ #   context['assets'] = ['assets'].filter(user=self.request.user)
+ #   context['count'] = ['assets'].filter(complete=False).count()
+ #   return context
 
 class CustomLoginView(LoginView):
     template_name = 'Asset_Manager_App/login.html'
@@ -54,7 +77,7 @@ class AssetList(ListView):
 class AssetDetail(DetailView):
     model = Assets
     context_object_name = 'asset'
-
+    
 class AssetAdd(CreateView):
     model = Assets
     fields = '__all__'

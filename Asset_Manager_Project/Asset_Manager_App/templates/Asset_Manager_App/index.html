@@ -40,11 +40,10 @@
                 <td><a href="{% url 'asset-update' asset.id %}">Edit</a></td>
                 <td><a href="{% url 'asset-delete' asset.id %}">Delete</a></td>
             </tr>
+            {% empty %}
+            <h3>No assets in stock!</h3>
             {% endfor %}
         </table>
-        {% else %}
-        <span>No assets in stock!</span>
-        {% endif %}
         {% endblock content %}
     </body>
 
