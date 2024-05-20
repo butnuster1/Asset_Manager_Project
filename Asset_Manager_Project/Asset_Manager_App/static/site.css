@@ -1,5 +1,12 @@
-body
-{
+body {
+    width: 100%;
+}
+
+#wrapper {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
 }
 
 .message {
@@ -17,21 +24,32 @@ body
     font-size: 32px;
     color: white;
     padding: 8px 5px 8px 5px;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .navbar a {
     text-decoration: none;
     color: inherit;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .navbar-brand {
     font-size: 1.2em;
     font-weight: 600;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .navbar-item {
-    
     margin-left: 30px;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .body-content {
@@ -41,4 +59,7 @@ body
     font-weight: 100;
     font-style: normal;
     font-size: 24px;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
