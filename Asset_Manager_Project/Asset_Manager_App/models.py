@@ -6,6 +6,7 @@ class Assets(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) # deleting all assets under user's name if user is deleted. Cascade deletes assets and SET_NULL keeps assets.
     assetName = models.CharField(max_length=200)
     assetDescription = models.TextField(null=True, blank=True)
+    assetCategory = models.CharField(max_length=200)
     assetInStock = models.BooleanField(default=False)
     assetAdded = models.DateTimeField(auto_now_add=True) #auto_now_add allows the system to automatically add the date it was added
     
@@ -14,7 +15,7 @@ class Assets(models.Model):
         return self.assetName
     
     class Meta:
-        ordering = ['assetInStock'] #orders the assets by whether they are in stock or not
+        ordering = ['-assetInStock'] #orders the assets by whether they are in stock or not
         
 
 # REMEBER: running any change to this page you have to rerun makemigrations and migrate to commit changes

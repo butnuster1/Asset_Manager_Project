@@ -1,57 +1,68 @@
 {% extends "Asset_Manager_App/layout.html" %}
 
+{% block content %}
 <html>
-    <head>
-        <title>{{ title }}</title>
-        {% load static %} <!-- Instruct Django to load static files -->
-        <link rel="stylesheet" type="text/css" href="{% static 'site.css' %}" />
-    </head>
-    <body>
-        <div><a href="schedule">Schedule</a></div>
-        <br />
-        <span class="message">{{ message }}</span>{{ content }}
-
-        {% block content %}
-
-
+<head>
+    <title>{{ title }}</title>
+    {% load static %} <!-- Instruct Django to load static files -->
+    <link rel="stylesheet" type="text/css" href="{% static 'site.css' %}" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.7/css/dataTables.dataTables.css" />
+</head>
+<body>
+    <div id="navbar">
         {% if request.user.is_authenticated %}
-        <p><b>Welcome, </b>{{request.user}}</p>
+        <p><b>Welcome, </b>{{ request.user }}</p>
         <a href="{% url 'logout' %}">Logout</a>
         {% else %}
         <a href="{% url 'login' %}">Login</a>
         {% endif %}
+    </div>
 
-        <hr>
-        <h1>Your Assets:</h1>
+    <hr>
+    <h1>Your Assets:</h1>
 
-        {% if content %}
-        <a href="{% url 'asset-create' %}">Add Asset</a>
+    {% if assetList %}
+    <a href="{% url 'asset-create' %}">Add Asset</a>
 
-        <form method="GET">
-            <input type='text' name="search-area" value="{{search_input}}" />
-            <input type="submit" value='search' />
-        </form>
+    <form method="GET">
+        <input type='text' name="search-area" value="{{ search_input }}" />
+        <input type="submit" value='search' />
+    </form>
 
-        <table>
+    <table id="example" class="display" style="width:50%">
+        <thead>
             <tr>
                 <th>Assets</th>
-                <th></th>
-                <th></th>
+                <th>Category</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
+        </thead>
+        <tbody>
             {% for asset in assetList %}
             <tr>
-                <td>{{asset.assetName}}</td>
+                <td>{{ asset.assetName }}</td>
+                <td>{{ asset.assetCategory }}</td>
                 <td><a href="{% url 'asset' asset.id %}">View</a></td>
                 <td><a href="{% url 'asset-update' asset.id %}">Edit</a></td>
                 <td><a href="{% url 'asset-delete' asset.id %}">Delete</a></td>
             </tr>
-            {% empty %}
-            <p><h3>No assets in stock!</h3></p>
+            
             {% endfor %}
-        </table>
-        
-        {% endif %}
-        {% endblock content %}
-    </body>
+        </tbody>
+    </table>
+    {% endif %}
 
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example').DataTable({
+                order: [[0, 'asc']] // Assuming you want to sort by the first column
+            });
+        });
+    </script>
+</body>
 </html>
+{% endblock content %}

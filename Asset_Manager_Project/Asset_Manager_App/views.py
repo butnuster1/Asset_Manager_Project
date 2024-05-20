@@ -37,7 +37,7 @@ def index(request):
     context = {
         'title': "Dickson College Asset Manager!",
         'message': "Welcome to the Dickson College Asset Manager",
-        'content': "table",
+  
         'assetList': assets,  # Use filtered assets instead of all assets
         'assets': assets,
         'count': stock_count,
@@ -114,7 +114,7 @@ class AssetDetail(DetailView):
 class AssetAdd(CreateView):
     model = Assets
     # fields = '__all__'
-    fields = ['assetName', 'assetDescription', 'assetInStock']
+    fields = ['assetName', 'assetCategory', 'assetDescription', 'assetInStock']
     success_url = reverse_lazy('index')
     
     def form_valid(self, form):
@@ -125,7 +125,7 @@ class AssetAdd(CreateView):
 class AssetUpdate(UpdateView):
     model = Assets
     # fields = '__all__'
-    fields = ['assetName', 'assetDescription', 'assetInStock']
+    fields = ['assetName', 'assetCategory', 'assetDescription', 'assetInStock']
     success_url = reverse_lazy('index')
     
 class DeleteView(DeleteView):
